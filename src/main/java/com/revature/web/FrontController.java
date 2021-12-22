@@ -10,45 +10,49 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FrontController
  */
 public class FrontController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FrontController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * This method will be responsible to determining what resource the client is reuqesting.
+	 * It will the URL and only capture the end part which would be login in (http://localhost:8080/FrontControllerDemo/login)
+	 * for example.
+	 * 
+	 * Once it captures the destination, it calls a ReuqestHelper which will supply the right functionality.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	// save the uri and reswrite it
 		
-//		final String URI = request.getRequestURI().replace("/FrontConroller")
+		// 1. Save the URI and rewrite it
+		final String URI = request.getRequestURI().replace("/FrontControllerDemo/", ""); // this will leave nothing but the end part ( login)
+		
+		// 2. Make a switch case statement and call the appropraite functionality based on the URI returned
+		switch(URI) {
+		case "login":
+			// Call the login method and pass the request and response object
+			RequestHelper.processLogin(request, response);
+			break;
+		case "error":
+			// Call some method that processes a 404 error
+			RequestHelper.processError(request, response);
+			break;
+		case "employees":
+			// This method will return all users from DB to the client
+			RequestHelper.processEmployees(request, response);
+			break;
+		default:
+			// Call some method that processes a 404 error
+			RequestHelper.processError(request, response);
+			break;
+		}
+
 	}
 
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// If a client sends a POST request here, it invokes doGet() instead.
+		
+		doGet(request, response);
 	}
 
 }

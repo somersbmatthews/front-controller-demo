@@ -28,4 +28,13 @@ public class EmployeeDAO {
 
 		return emps;
 	}
+	
+	public boolean update(Employee e) {
+		return false;
+	}
+	
+	public boolean delete(Employee e) {
+		return false;
+	}
+	
 }

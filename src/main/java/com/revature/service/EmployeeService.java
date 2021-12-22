@@ -17,7 +17,7 @@ public class EmployeeService {
 	public Employee confirmLogin(String username, String password) {
 		Optional<Employee> possibleEmp = edao.findAll()
 				.stream()
-				.filter(e -> (e.getUserName().equals(username)) && e.getPassword().equals(password))
+				.filter(e -> (e.getUsername().equals(username)) && e.getPassword().equals(password))
 				.findFirst();
 		
 		return (possibleEmp.isPresent() ? possibleEmp.get() : null);
