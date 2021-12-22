@@ -9,7 +9,7 @@
 <h1>Welcome, Employee!</h1>
 <h3>Please login below</h3>
 
-<form method="POST" action = "">
+<form method="POST" action = "login"> <!--  --> 
 	<label>Username:</label>
 	<input type="text" name="username" placeholder="Enter a username please"></input>
 	
@@ -17,6 +17,11 @@
 	<input type="password" name="password" placeholder="Enter a password please"></input>
 	
 	<input type="submit" value="login"></input>
+</form>
+
+<form method="GET" action="employees">
+	<p>To see all employees in the system, please click below.</p>
+	<input type="submit" value="Click me!">
 </form>
 
 </body>
