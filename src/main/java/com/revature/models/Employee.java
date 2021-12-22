@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="employees")
-public class Employee {
+public class Employee implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7217264538771111143L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
